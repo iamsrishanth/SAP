@@ -167,7 +167,13 @@ a big redemption can downgrade a customer.
 
 ### 5.5 Error Handling
 Handlers return `req.error(status, message)`; the dashboard renders `error.error.message`
-in a red toast. Tiers: ≥3000 Platinum, ≥1500 Gold, ≥500 Silver, else Bronze.
+in a red toast.
+
+Tier thresholds visualised:
+
+![Tier ladder](docs/tier-ladder.svg)
+
+Tiers: ≥3000 Platinum, ≥1500 Gold, ≥500 Silver, else Bronze.
 
 ---
 

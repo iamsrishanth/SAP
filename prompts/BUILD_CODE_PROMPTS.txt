@@ -1,0 +1,11 @@
+Prompt 1: Create a SAP CAP project for an omni-channel retail customer loyalty and rewards system with Customer, Transaction, Redemption and RewardPolicy entities.
+
+Prompt 2: Expose the entities through OData V4 and add actions for recording purchases and redeeming points.
+
+Prompt 3: Implement Online = 2 points per ₹100 and Store = 1 point per ₹100, with insufficient-balance validation.
+
+Prompt 4: Create a Fiori/UI5 dashboard with KPI cards, customers, transactions and redemption views.
+
+Prompt 5: Add validation, tier recalculation and user-friendly error messages.
+
+Prompt 6: Generate test cases for CRUD, points calculation, redemption and tier changes.

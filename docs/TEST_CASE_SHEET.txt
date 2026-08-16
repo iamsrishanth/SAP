@@ -1,0 +1,7 @@
+ID | Scenario | Input | Expected Result
+TC-01 | Create customer | Valid customer data | Customer created with Bronze tier
+TC-02 | Online purchase | ₹1,000 Online | 20 points earned
+TC-03 | Store purchase | ₹1,000 Store | 10 points earned
+TC-04 | Redeem points | Redeem 200 | 200 points deducted
+TC-05 | Over-redemption | Redeem above balance | Rejected with insufficient-points error
+TC-06 | Tier update | Cross 500/1500/3000 | Silver/Gold/Platinum applied

@@ -1,0 +1,14 @@
+{
+  "name": "retail-loyalty-rewards-capstone",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "build": "cds build"
+  },
+  "dependencies": {
+    "@sap/cds": "^9",
+    "@sap/cds-dk": "^9"
+  }
+}

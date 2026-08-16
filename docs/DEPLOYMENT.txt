@@ -1,0 +1,7 @@
+1. Open the project in SAP Business Application Studio.
+2. Open Terminal in the project root.
+3. Run npm install.
+4. Run npm run watch (or cds watch).
+5. Open the generated application/service URL.
+6. Verify customer, transaction and redemption operations.
+7. For BTP deployment, configure the Cloud Foundry target and deploy the application.

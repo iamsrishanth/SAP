@@ -1,0 +1,4 @@
+Sprint 1: Entity model, mock data, service definitions
+Sprint 2: Point computation and redemption logic
+Sprint 3: Fiori dashboard
+Sprint 4: Deployment and testing

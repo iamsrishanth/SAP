@@ -2,13 +2,33 @@
   "name": "retail-loyalty-rewards-capstone",
   "version": "1.0.0",
   "private": true,
+  "description": "SAP CAP omni-channel retail loyalty and rewards system — Customers, Transactions, Redemptions, RewardPolicies with recordPurchase/redeemPoints actions, Fiori-friendly dashboard.",
   "scripts": {
     "start": "cds-serve",
     "watch": "cds watch",
-    "build": "cds build"
+    "build": "cds build",
+    "deploy:local": "cds deploy --to sqlite:db.sqlite",
+    "test": "cds test --profile local",
+    "test:unit": "cds test --profile local test/LoyaltyService.test.js",
+    "test:smoke": "bash test/browser-smoke.sh"
   },
   "dependencies": {
-    "@sap/cds": "^9",
-    "@sap/cds-dk": "^9"
+    "@sap/cds": "^10.0.5"
+  },
+  "devDependencies": {
+    "@cap-js/cds-test": "^1.0.0",
+    "@cap-js/sqlite": "^3.0.2",
+    "@sap/cds-dk": "^10.0.7"
+  },
+  "cds": {
+    "test": {
+      "profiles": {
+        "local": {
+          "db": {
+            "kind": "sqlite-mem"
+          }
+        }
+      }
+    }
   }
 }

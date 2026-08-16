@@ -1,7 +1,9 @@
-ID | Scenario | Input | Expected Result
-TC-01 | Create customer | Valid customer data | Customer created with Bronze tier
-TC-02 | Online purchase | ₹1,000 Online | 20 points earned
-TC-03 | Store purchase | ₹1,000 Store | 10 points earned
-TC-04 | Redeem points | Redeem 200 | 200 points deducted
-TC-05 | Over-redemption | Redeem above balance | Rejected with insufficient-points error
-TC-06 | Tier update | Cross 500/1500/3000 | Silver/Gold/Platinum applied
+ID | Scenario | Input | Expected Result | Status | Evidence
+TC-01 | Create customer | Valid customer data | Customer created with Bronze tier | PASS | test: `createCustomer` helper + `assertCustomer` (Bronze default); verified on live service via quick actions
+TC-02 | Online purchase | ₹1,000 Online | 20 points earned | PASS | test: "awards 2 points per ₹100 for Online purchases (TC-02)"; live browser run: +20 pts
+TC-03 | Store purchase | ₹1,000 Store | 10 points earned | PASS | test: "awards 1 point per ₹100 for Store purchases (TC-03)"
+TC-04 | Redeem points | Redeem 200 | 200 points deducted | PASS | test: "deducts points within balance and recalculates tier (TC-04)" (520→500)
+TC-05 | Over-redemption | Redeem above balance | Rejected with insufficient-points error | PASS | test: "rejects redeeming above balance (TC-05)"; live browser toast: "Insufficient loyalty points"
+TC-06 | Tier update | Cross 500/1500/3000 | Silver/Gold/Platinum applied | PASS | test: "applies Silver at 500, Gold at 1500, Platinum at 3000" + "drops tier after redemption crosses below threshold"
+
+Full suite: 13/13 passing (`npx cds test --profile local test/LoyaltyService.test.js`).

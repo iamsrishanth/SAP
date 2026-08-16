@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build output
+gen/
+dist/
+
+# Local databases
+db.sqlite
+*.db
+*.sqlite
+
+# Test artifacts
+_out/
+coverage/
+
+# Env and editor
+.env
+.DS_Store
+*.log
+
+# CDS storage
+.cds-storage/

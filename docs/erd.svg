@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="crow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0a6ed1"/>
+    </marker>
+    <marker id="crown" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M10,0 L0,5 L10,10 z" fill="#0a6ed1"/>
+    </marker>
+  </defs>
+  <rect width="960" height="520" fill="#f4f7fb"/>
+  <text x="480" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#122033">Entity Relationship Diagram — loyalty namespace</text>
+
+  <!-- Customers -->
+  <rect x="40" y="80" width="240" height="220" rx="12" fill="#ffffff" stroke="#0a6ed1" stroke-width="2"/>
+  <rect x="40" y="80" width="240" height="34" rx="12" fill="#0a6ed1"/>
+  <text x="160" y="102" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">Customers</text>
+  <text x="58" y="136" font-size="12" fill="#122033">ID : UUID (PK, cuid)</text>
+  <text x="58" y="158" font-size="12" fill="#122033">name : String(100)</text>
+  <text x="58" y="180" font-size="12" fill="#122033">email : String(150)</text>
+  <text x="58" y="202" font-size="12" fill="#122033">totalPoints : Integer</text>
+  <text x="58" y="224" font-size="12" fill="#122033">tier : String(20)</text>
+  <text x="58" y="246" font-size="12" fill="#64748b">createdAt / createdBy / modifiedAt /</text>
+  <text x="58" y="264" font-size="12" fill="#64748b">modifiedBy (managed)</text>
+  <text x="58" y="286" font-size="12" fill="#64748b">transactions → many</text>
+  <text x="58" y="304" font-size="12" fill="#64748b">redemptions → many</text>
+
+  <!-- Transactions -->
+  <rect x="380" y="80" width="250" height="200" rx="12" fill="#ffffff" stroke="#0a6ed1" stroke-width="2"/>
+  <rect x="380" y="80" width="250" height="34" rx="12" fill="#0a6ed1"/>
+  <text x="505" y="102" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">Transactions</text>
+  <text x="398" y="136" font-size="12" fill="#122033">ID : UUID (PK, cuid)</text>
+  <text x="398" y="158" font-size="12" fill="#122033">customer_ID : UUID (FK → Customers)</text>
+  <text x="398" y="180" font-size="12" fill="#122033">channel : String(20) Online|Store</text>
+  <text x="398" y="202" font-size="12" fill="#122033">amount : Decimal(12,2)</text>
+  <text x="398" y="224" font-size="12" fill="#122033">txnDate : DateTime</text>
+  <text x="398" y="246" font-size="12" fill="#122033">pointsEarned : Integer</text>
+  <text x="398" y="268" font-size="12" fill="#64748b">+ managed fields</text>
+
+  <!-- Redemptions -->
+  <rect x="380" y="310" width="250" height="180" rx="12" fill="#ffffff" stroke="#0a6ed1" stroke-width="2"/>
+  <rect x="380" y="310" width="250" height="34" rx="12" fill="#0a6ed1"/>
+  <text x="505" y="332" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">Redemptions</text>
+  <text x="398" y="366" font-size="12" fill="#122033">ID : UUID (PK, cuid)</text>
+  <text x="398" y="388" font-size="12" fill="#122033">customer_ID : UUID (FK → Customers)</text>
+  <text x="398" y="410" font-size="12" fill="#122033">pointsUsed : Integer</text>
+  <text x="398" y="432" font-size="12" fill="#122033">redeemDate : DateTime</text>
+  <text x="398" y="454" font-size="12" fill="#122033">remarks : String(255)</text>
+  <text x="398" y="476" font-size="12" fill="#64748b">+ managed fields</text>
+
+  <!-- RewardPolicies -->
+  <rect x="700" y="80" width="240" height="180" rx="12" fill="#ffffff" stroke="#0a6ed1" stroke-width="2"/>
+  <rect x="700" y="80" width="240" height="34" rx="12" fill="#0a6ed1"/>
+  <text x="820" y="102" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">RewardPolicies</text>
+  <text x="718" y="136" font-size="12" fill="#122033">ID : UUID (PK, cuid)</text>
+  <text x="718" y="158" font-size="12" fill="#122033">policyName : String(100)</text>
+  <text x="718" y="180" font-size="12" fill="#122033">channel : String(20)</text>
+  <text x="718" y="202" font-size="12" fill="#122033">pointsPer100 : Decimal(8,2)</text>
+  <text x="718" y="224" font-size="12" fill="#122033">active : Boolean</text>
+  <text x="718" y="246" font-size="12" fill="#64748b">+ managed fields</text>
+
+  <!-- relationships -->
+  <line x1="280" y1="150" x2="376" y2="130" stroke="#0a6ed1" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="305" y="128" font-size="11" fill="#0a6ed1">1</text>
+  <text x="362" y="124" font-size="11" fill="#0a6ed1">N</text>
+  <line x1="280" y1="290" x2="376" y2="330" stroke="#0a6ed1" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="305" y="318" font-size="11" fill="#0a6ed1">1</text>
+  <text x="362" y="324" font-size="11" fill="#0a6ed1">N</text>
+
+  <text x="480" y="512" text-anchor="middle" font-size="12" fill="#64748b">Customers 1 ─── N Transactions · Customers 1 ─── N Redemptions · RewardPolicies (independent lookup table)</text>
+</svg>

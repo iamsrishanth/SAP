@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0a6ed1"/>
+    </marker>
+  </defs>
+  <rect width="960" height="420" fill="#f4f7fb"/>
+  <text x="480" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#122033">Retail Loyalty &amp; Rewards — System Architecture</text>
+
+  <!-- Browser -->
+  <rect x="40" y="120" width="220" height="180" rx="14" fill="#ffffff" stroke="#0a6ed1" stroke-width="2"/>
+  <text x="150" y="152" text-anchor="middle" font-size="15" font-weight="bold" fill="#0a6ed1">Dashboard UI (Browser)</text>
+  <text x="150" y="176" text-anchor="middle" font-size="12" fill="#64748b">app/loyalty/webapp/</text>
+  <text x="150" y="198" text-anchor="middle" font-size="12" fill="#122033">KPI cards · leaderboard</text>
+  <text x="150" y="218" text-anchor="middle" font-size="12" fill="#122033">purchase / redeem forms</text>
+  <text x="150" y="238" text-anchor="middle" font-size="12" fill="#122033">toast notifications</text>
+  <text x="150" y="262" text-anchor="middle" font-size="12" fill="#64748b">fetch() · JSON · ₹ INR</text>
+
+  <!-- Service -->
+  <rect x="370" y="120" width="220" height="180" rx="14" fill="#ffffff" stroke="#0a6ed1" stroke-width="2"/>
+  <text x="480" y="152" text-anchor="middle" font-size="15" font-weight="bold" fill="#0a6ed1">CAP Service Layer (Node.js)</text>
+  <text x="480" y="176" text-anchor="middle" font-size="12" fill="#64748b">srv/loyalty-service.cds</text>
+  <text x="480" y="198" text-anchor="middle" font-size="12" fill="#122033">OData V4 /odata/v4/loyalty</text>
+  <text x="480" y="218" text-anchor="middle" font-size="12" fill="#122033">Customers · Transactions</text>
+  <text x="480" y="238" text-anchor="middle" font-size="12" fill="#122033">Redemptions · RewardPolicies</text>
+  <text x="480" y="262" text-anchor="middle" font-size="12" fill="#122033">recordPurchase / redeemPoints</text>
+  <text x="480" y="286" text-anchor="middle" font-size="11" fill="#64748b">tier engine: Bronze→Silver→Gold→Platinum</text>
+
+  <!-- DB -->
+  <rect x="700" y="120" width="220" height="180" rx="14" fill="#ffffff" stroke="#0a6ed1" stroke-width="2"/>
+  <text x="810" y="152" text-anchor="middle" font-size="15" font-weight="bold" fill="#0a6ed1">Persistence Layer</text>
+  <text x="810" y="176" text-anchor="middle" font-size="12" fill="#64748b">db/schema.cds</text>
+  <text x="810" y="198" text-anchor="middle" font-size="12" fill="#122033">SQLite (local dev)</text>
+  <text x="810" y="218" text-anchor="middle" font-size="12" fill="#122033">SAP HANA Cloud (BTP)</text>
+  <text x="810" y="242" text-anchor="middle" font-size="12" fill="#64748b">db/data/*.csv seeds</text>
+  <text x="810" y="266" text-anchor="middle" font-size="12" fill="#64748b">cuid + managed aspects</text>
+
+  <!-- arrows -->
+  <line x1="260" y1="170" x2="366" y2="170" stroke="#0a6ed1" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="590" y1="170" x2="696" y2="170" stroke="#0a6ed1" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="313" y="160" text-anchor="middle" font-size="11" fill="#0a6ed1">OData</text>
+  <text x="643" y="160" text-anchor="middle" font-size="11" fill="#0a6ed1">CQN/SQL</text>
+  <line x1="366" y1="210" x2="260" y2="210" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+  <text x="313" y="230" text-anchor="middle" font-size="11" fill="#64748b">JSON</text>
+  <line x1="696" y1="210" x2="590" y2="210" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+  <text x="643" y="230" text-anchor="middle" font-size="11" fill="#64748b">rows</text>
+
+  <!-- Flow -->
+  <rect x="40" y="340" width="880" height="56" rx="12" fill="#e8eef5"/>
+  <text x="480" y="362" text-anchor="middle" font-size="13" font-weight="bold" fill="#122033">Application flow</text>
+  <text x="480" y="383" text-anchor="middle" font-size="12" fill="#122033">purchase submitted → validate (amount &gt; 0, customer exists) → compute points (Online 2 / Store 1 per ₹100) → insert transaction → update balance + tier → respond</text>
+</svg>

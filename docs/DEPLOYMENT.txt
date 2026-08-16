@@ -1,7 +1,40 @@
-1. Open the project in SAP Business Application Studio.
+# Deployment Guide
+
+## Local development (SAP Business Application Studio or any machine)
+
+1. Open the project in SAP Business Application Studio (or a local terminal).
 2. Open Terminal in the project root.
-3. Run npm install.
-4. Run npm run watch (or cds watch).
-5. Open the generated application/service URL.
-6. Verify customer, transaction and redemption operations.
-7. For BTP deployment, configure the Cloud Foundry target and deploy the application.
+3. Run `npm install`.
+4. Deploy the local database with seed data: `npm run deploy:local`.
+5. Run `npm run watch` (or `cds watch`).
+6. Open the dashboard at `http://localhost:4004/loyalty/webapp/index.html`.
+7. Verify customer, transaction and redemption operations from the dashboard quick actions.
+8. Run the automated test suite with `npm test` (13 tests) and the browser smoke test with `npm run test:smoke`.
+
+## Serving the frontend with the CAP app
+
+The static dashboard lives in `app/loyalty/webapp/`. CAP serves it automatically as
+static content — no build step needed:
+
+- Local dev: `http://localhost:4004/loyalty/webapp/index.html`
+- The JS calls the OData v4 service at `/odata/v4/loyalty/...` (same origin, no CORS setup needed).
+- When the service is unreachable the dashboard falls back to bundled demo data and shows a "Demo mode" badge, so the page always renders something useful.
+
+## SAP BTP (Cloud Foundry) deployment
+
+1. Prepare the project for HANA production: `cds add hana --for production && npm install`.
+2. Run `npm run build` to produce the `gen/` deployment artifacts.
+3. Create/configure the HANA HDI container service instance (see `HANA_Deployment_Guide.md` for the SAP HANA Projects Explorer flow in BAS).
+4. Deploy the database: `cds deploy --to hana` (bound to the HDI container).
+5. Deploy the application:
+   ```
+   cf login -a <api-endpoint>
+   cf create-service hana hdi-shared <instance-name>
+   cf push retail-loyalty-rewards
+   ```
+   With `mta.yaml` available (added by `cds add mta`), use:
+   ```
+   mbt build
+   cf deploy gen/mta.tar
+   ```
+6. Verify: open the app route, then check `GET /odata/v4/loyalty/Customers` returns seeded data and the dashboard shows the "Live OData" badge.

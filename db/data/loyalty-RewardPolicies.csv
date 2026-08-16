@@ -1,0 +1,4 @@
+ID,policyName,channel,pointsPer100,active
+30000000-0000-0000-0000-000000000001,Online purchase,Online,2,true
+30000000-0000-0000-0000-000000000002,Store purchase,Store,1,true
+30000000-0000-0000-0000-000000000003,Tier refresh,All,0,true

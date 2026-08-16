@@ -1,32 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Retail Loyalty & Rewards</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><strong>Retail Loyalty & Rewards</strong><nav>
-Dashboard | Customers | Transactions | Redemptions | Reward Policy
-</nav></header>
-<main>
-<section class="cards">
-<div class="card"><span>Total Customers</span><b>4</b></div>
-<div class="card"><span>Total Points Issued</span><b>4,800</b></div>
-<div class="card"><span>Total Points Redeemed</span><b>1,450</b></div>
-<div class="card"><span>Available Points</span><b>3,350</b></div>
-</section>
-<section class="panel"><h2>Top Customers</h2>
-<table><tr><th>Customer</th><th>Email</th><th>Total Points</th><th>Tier</th></tr>
-<tr><td>Aarav Sharma</td><td>aarav.sharma@email.com</td><td>1,250</td><td>Silver</td></tr>
-<tr><td>Ananya Reddy</td><td>ananya.reddy@email.com</td><td>2,450</td><td>Gold</td></tr>
-<tr><td>Imran Khan</td><td>imran.khan@email.com</td><td>320</td><td>Bronze</td></tr>
-<tr><td>Priya Nair</td><td>priya.nair@email.com</td><td>780</td><td>Silver</td></tr>
-</table></section>
-<section class="panel"><h2>Business Rules</h2>
-<ul><li>Online: 2 points per ₹100.</li>
-<li>Store: 1 point per ₹100.</li>
-<li>Redemption is rejected if balance is insufficient.</li>
-<li>Tier is recalculated after every transaction.</li></ul>
-</section>
-</main></body></html>
+  <header class="shell-header">
+    <div>
+      <p class="eyebrow">SAP CAP Demo</p>
+      <h1>Retail Loyalty & Rewards</h1>
+    </div>
+    <nav aria-label="Primary navigation">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#customers">Customers</a>
+      <a href="#transactions">Transactions</a>
+      <a href="#redemptions">Redemptions</a>
+      <a href="#policies">Reward Policy</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="dashboard" class="hero panel">
+      <div>
+        <p class="eyebrow">Omni-channel rewards cockpit</p>
+        <h2>Track purchases, points, tiers and redemptions in one place.</h2>
+        <p>Use live OData data when the CAP service is running, with friendly fallback demo data for local previews.</p>
+      </div>
+      <button id="refreshButton" type="button">Refresh dashboard</button>
+    </section>
+
+    <section class="cards" aria-label="Loyalty KPIs">
+      <article class="card"><span>Total Customers</span><b id="totalCustomers">0</b></article>
+      <article class="card"><span>Total Points Issued</span><b id="pointsIssued">0</b></article>
+      <article class="card"><span>Total Points Redeemed</span><b id="pointsRedeemed">0</b></article>
+      <article class="card"><span>Available Points</span><b id="availablePoints">0</b></article>
+    </section>
+
+    <section class="workspace">
+      <article id="customers" class="panel wide">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Customers</p>
+            <h2>Tier leaderboard</h2>
+          </div>
+          <span id="dataMode" class="status-pill">Loading</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Customer</th><th>Email</th><th>Total Points</th><th>Tier</th></tr></thead>
+            <tbody id="customerRows"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <aside class="panel">
+        <p class="eyebrow">Quick action</p>
+        <h2>Record purchase</h2>
+        <form id="purchaseForm">
+          <label>Customer<select id="purchaseCustomer" required></select></label>
+          <label>Channel<select id="purchaseChannel"><option>Online</option><option>Store</option></select></label>
+          <label>Amount (₹)<input id="purchaseAmount" type="number" min="1" step="0.01" value="1000" required></label>
+          <button type="submit">Add points</button>
+        </form>
+      </aside>
+
+      <article id="transactions" class="panel">
+        <div class="panel-heading"><h2>Recent Transactions</h2></div>
+        <div id="transactionList" class="activity-list"></div>
+      </article>
+
+      <article id="redemptions" class="panel">
+        <div class="panel-heading"><h2>Recent Redemptions</h2></div>
+        <div id="redemptionList" class="activity-list"></div>
+      </article>
+
+      <aside class="panel">
+        <p class="eyebrow">Quick action</p>
+        <h2>Redeem points</h2>
+        <form id="redeemForm">
+          <label>Customer<select id="redeemCustomer" required></select></label>
+          <label>Points<input id="redeemPoints" type="number" min="1" value="250" required></label>
+          <label>Remarks<input id="redeemRemarks" type="text" value="Voucher redemption"></label>
+          <button type="submit">Redeem</button>
+        </form>
+      </aside>
+
+      <article id="policies" class="panel wide">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Reward policy</p>
+            <h2>Business rules</h2>
+          </div>
+        </div>
+        <div id="policyGrid" class="policy-grid"></div>
+      </article>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

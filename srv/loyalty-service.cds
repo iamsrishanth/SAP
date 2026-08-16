@@ -1,3 +1,4 @@
+using { loyalty } from '../db/schema';
 @path: '/odata/v4/loyalty'
 service LoyaltyService {
   entity Customers      as projection on loyalty.Customers;
